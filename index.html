@@ -170,6 +170,8 @@ body {
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 .hero h1 .smear { display: inline-block; transform-origin: center; }
+.hero h1 .hanzi { font-size: 120px; }
+.m-br { display: none; }
 
 .hero .scroll-cue {
   position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
@@ -673,6 +675,10 @@ section { position: relative; }
   .brewf-content { gap:14px; justify-content:center; }
   .brewf-preview  { height:155px; }
   .card-brew-desc { font-size:13px; line-height:1.6; }
+  .hero h1 { font-size: clamp(48px, 12vw, 64px); }
+  .hero h1 .hanzi { font-size: 1em; }
+  .m-br { display: block; }
+  .bm.pos-tr, .bm.pos-cl, .bm.pos-cr, .bm.pos-bl { display: none; }
 }
 </style>
 </head>
@@ -784,7 +790,7 @@ section { position: relative; }
     <h1>
       <span class="smear">B</span><span class="smear">E</span><span class="smear">L</span><span class="smear">L</span><span class="smear accent">a</span>
       <br/>
-      <span class="smear">X</span><span class="smear">U</span><span class="smear" style="font-size:120px">许</span><span class="smear" style="font-size:120px">诺</span>
+      <span class="smear">X</span><span class="smear">U</span><span class="smear hanzi">许</span><br class="m-br"/><span class="smear hanzi">诺</span>
     </h1>
   </div>
 
@@ -903,7 +909,7 @@ Built as a fully automated pipeline that transforms raw news into accessible, cu
   <div class="ring"><div class="glow"></div></div>
   <div class="stage">
   
-    <h3><a href="mailto:bellaxunuo@gmail.com">contact me</a></h3>
+    <h3><a href="mailto:bellaxunuo@gmail.com">contact me </a></h3>
     <div class="row">
       <a href="mailto:bellaxunuo@gmail.com">BELLAXUNUO@GMAIL.COM</a>
       <a href="https://linkedin.com" target="_blank">LINKEDIN</a>
