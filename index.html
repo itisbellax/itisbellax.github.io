@@ -272,7 +272,7 @@ section { position: relative; }
 /* grid layout */
 .work.w1 { grid-column:span 6; }
 .work.w2 { grid-column:span 6; }
-.work.w3 { grid-column:span 5; }
+.work.w3 { grid-column:span 4; aspect-ratio:3/4; }
 .work.w4 { grid-column:span 7; }
 .work.w5 { grid-column:span 4; aspect-ratio:3/4; }
 .work.w6 { grid-column:span 4; aspect-ratio:3/4; }
@@ -280,8 +280,8 @@ section { position: relative; }
 
 /* canvas gradients */
 .canvas.c1 { background:radial-gradient(60% 60% at 30% 35%,var(--amber) 0%,transparent 60%),radial-gradient(50% 50% at 70% 65%,var(--magenta) 0%,transparent 60%),radial-gradient(80% 80% at 50% 50%,var(--pink) 0%,var(--bg-2) 100%); }
-.canvas.c2 { background:radial-gradient(70% 70% at 50% 40%,var(--sage) 0%,transparent 60%),radial-gradient(60% 60% at 30% 80%,var(--orange) 0%,transparent 60%),linear-gradient(180deg,#f1e1d2,#e5d2bc); }
-.canvas.c3 { background:radial-gradient(60% 60% at 70% 30%,var(--orange) 0%,transparent 60%),radial-gradient(50% 50% at 30% 70%,var(--lilac) 0%,transparent 60%),linear-gradient(135deg,#fce4d6,#f5d2cb); }
+.canvas.c2 { background:radial-gradient(65% 65% at 28% 35%,var(--orange) 0%,transparent 60%),radial-gradient(55% 55% at 75% 72%,#e84040 0%,transparent 58%),linear-gradient(155deg,#f5d9c4,#e8c0a0); }
+.canvas.c3 { background:radial-gradient(60% 60% at 68% 28%,var(--sage) 0%,transparent 58%),radial-gradient(55% 55% at 28% 72%,var(--lilac) 0%,transparent 58%),linear-gradient(140deg,#e4f0e0,#e8dff4); }
 .canvas.c4 { background:radial-gradient(70% 70% at 50% 50%,var(--magenta) 0%,transparent 60%),radial-gradient(50% 50% at 80% 20%,var(--amber) 0%,transparent 60%),linear-gradient(180deg,#ffd1c0,#ffb8a3); }
 .canvas.c5 { background:radial-gradient(70% 70% at 50% 50%,var(--pink) 0%,transparent 60%),linear-gradient(160deg,#ffdfd3,#ffc9b9); }
 .canvas.c6 { background:radial-gradient(70% 70% at 50% 40%,var(--sage) 0%,transparent 60%),linear-gradient(180deg,#ecf0d8,#d6e1ba); }
@@ -352,7 +352,7 @@ section { position: relative; }
 .brewf-preview {
   position:relative;              /* 不再 absolute，跟随 flex 流 */
   width:min(88%, 520px);
-  height:clamp(180px, 56%, 330px); /* 桌面端：56% of (card-120px)，最大 330px */
+  height:clamp(180px, 56%, 330px);
   flex-shrink:0;
   border-radius:14px; overflow:hidden; z-index:3;
   background:radial-gradient(ellipse at 50% 58%, #3b3a26 0%, #16160d 72%);
@@ -406,6 +406,163 @@ section { position: relative; }
   padding:0 8px;
   overflow:hidden;
 }
+
+/* ── WhyDidItFail card ── */
+.wdif-content {
+  position:absolute;
+  inset:48px 16px 72px;
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  gap:18px; overflow:hidden;
+}
+.wdif-preview {
+  position:relative;
+  width:min(88%, 520px);
+  height:clamp(160px, 50%, 270px);
+  flex-shrink:0;
+  border-radius:14px; overflow:hidden; z-index:3;
+  background:radial-gradient(ellipse at 40% 20%, #2b1a0c 0%, #0d0907 75%);
+  display:flex; flex-direction:column;
+  padding:14px 14px 40px;
+  box-shadow:0 8px 32px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.06);
+  font-family:var(--mono);
+}
+.wdif-bar {
+  display:flex; align-items:center; gap:7px;
+  font-size:9px; letter-spacing:.18em; text-transform:uppercase;
+  color:rgba(255,255,255,.3); margin-bottom:10px;
+}
+.wdif-dot {
+  width:6px; height:6px; border-radius:50%;
+  background:#ff4d4d;
+  box-shadow:0 0 8px #ff4d4d;
+  animation:blink 1.8s ease-in-out infinite;
+  flex-shrink:0;
+}
+@keyframes blink { 0%,100%{opacity:1;} 50%{opacity:.25;} }
+.wdif-status {
+  font-size:clamp(9px,.9vw,11px);
+  color:rgba(255,185,80,.55);
+  letter-spacing:.1em; margin-bottom:6px;
+  text-transform:uppercase;
+}
+.wdif-wordmark {
+  font-family:var(--mono);
+  font-size:clamp(18px,2.6vw,30px);
+  font-weight:500; letter-spacing:-.01em; line-height:1.1;
+  color:#fff;
+}
+.wdif-wordmark em { font-style:normal; color:#ff6b3d; }
+.wdif-diag {
+  margin-top:auto;
+  font-size:9px; letter-spacing:.1em;
+  color:rgba(255,185,80,.4); text-transform:uppercase;
+}
+.wdif-cta {
+  position:absolute; bottom:10px; right:12px;
+  font-size:10px; letter-spacing:.08em; text-transform:uppercase;
+  color:rgba(255,255,255,.5); text-decoration:none;
+  padding:5px 12px;
+  border:1px solid rgba(255,255,255,.15); border-radius:6px;
+  transition:color .2s, border-color .2s;
+}
+.wdif-cta:hover { color:rgba(255,255,255,.9); border-color:rgba(255,255,255,.4); }
+.card-wdif-desc {
+  font-family:var(--serif); font-style:italic; font-weight:400;
+  font-size:clamp(13px,1.2vw,16px);
+  line-height:1.55; color:var(--ink);
+  text-align:center; padding:0 8px; overflow:hidden;
+}
+
+/* ── AskDoc card (wide horizontal layout) ── */
+.askdoc-content {
+  position:absolute; inset:0;
+  display:flex; flex-direction:row;
+  align-items:center;
+  padding: 30px 45px;
+  gap:22px; overflow:hidden;
+  z-index:2;
+}
+.askdoc-preview {
+  flex:0 0 auto;
+  width:min(46%, 420px);
+  height:90%;
+  border-radius:14px; overflow:hidden;
+  background:radial-gradient(ellipse at 40% 20%, #111a14 0%, #080c0a 80%);
+  display:flex; flex-direction:column;
+  padding:16px 16px 42px;
+  box-shadow:0 8px 40px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.06);
+  font-family:var(--mono); position:relative;
+}
+.askdoc-bar {
+  display:flex; align-items:center; gap:8px;
+  font-size:9px; letter-spacing:.18em; text-transform:uppercase;
+  color:rgba(255,255,255,.3); margin-bottom:12px;
+}
+.askdoc-dot {
+  width:6px; height:6px; border-radius:50%;
+  background:#7fc97f; box-shadow:0 0 8px #7fc97f;
+  flex-shrink:0;
+}
+.askdoc-wordmark {
+  font-family:var(--mono);
+  font-size:clamp(20px,2.4vw,28px);
+  font-weight:500; color:#fff; letter-spacing:-.01em;
+  margin-bottom:14px;
+}
+.askdoc-wordmark em { font-style:normal; color:#7fc97f; }
+.askdoc-qa { display:flex; flex-direction:column; gap:8px; flex:1; overflow:hidden; }
+.askdoc-q {
+  font-size:clamp(9px,.85vw,11px); letter-spacing:.05em;
+  color:rgba(255,255,255,.45); padding:6px 8px;
+  background:rgba(255,255,255,.06); border-radius:6px;
+  border-left:2px solid rgba(127,201,127,.4);
+}
+.askdoc-a {
+  font-size:clamp(9px,.85vw,11px); letter-spacing:.05em;
+  color:rgba(200,240,200,.65); padding:6px 8px;
+  background:rgba(127,201,127,.07); border-radius:6px;
+}
+.askdoc-cite {
+  display:inline-block; font-size:8px; letter-spacing:.1em;
+  background:rgba(127,201,127,.18); color:#7fc97f;
+  padding:1px 5px; border-radius:3px; margin-left:4px;
+}
+.askdoc-cta {
+  position:absolute; bottom:10px; right:12px;
+  font-size:10px; letter-spacing:.08em; text-transform:uppercase;
+  color:rgba(255,255,255,.5); text-decoration:none;
+  padding:5px 12px;
+  border:1px solid rgba(255,255,255,.15); border-radius:6px;
+  transition:color .2s, border-color .2s;
+}
+.askdoc-cta:hover { color:rgba(255,255,255,.9); border-color:rgba(255,255,255,.4); }
+.askdoc-copy {
+  flex:1; display:flex; flex-direction:column;
+  justify-content:center; gap:16px;
+}
+.askdoc-copy .askdoc-index-label {
+  font-family:var(--mono); font-size:10px; letter-spacing:.15em;
+  color:var(--ink-soft); text-transform:uppercase;
+}
+.askdoc-copy h3 {
+  font-family:var(--serif); font-style:italic; font-weight:400;
+  font-size:clamp(22px,2.4vw,34px); line-height:1; margin:0;
+  letter-spacing:-.02em; color:var(--ink);
+}
+.askdoc-copy p {
+  font-family:var(--serif); font-style:italic; font-weight:400;
+  font-size:clamp(13px,1.15vw,16px); line-height:1.6;
+  color:var(--ink); margin:0; overflow:hidden;
+}
+.askdoc-copy .askdoc-link {
+  display:inline-block; font-family:var(--mono); font-size:11px;
+  letter-spacing:.1em; text-transform:uppercase;
+  color:var(--ink-soft); text-decoration:none;
+  border-bottom:1px solid currentColor; padding-bottom:2px;
+  align-self:flex-start; transition:color .2s;
+}
+.askdoc-copy .askdoc-link:hover { color:var(--ink); }
 
 /* ─────────────────────────────────────────────────────────────
    About
@@ -670,11 +827,22 @@ section { position: relative; }
   body { cursor:auto; }
   .cursor { display:none; }
 
-  /* ── Brewf card 手机端：卡片拉高以容纳完整描述 ── */
+  /* ── Brewf card 手机端 ── */
   .work.w1 { aspect-ratio: auto; min-height: 620px; }
   .brewf-content { gap:14px; justify-content:center; }
   .brewf-preview  { height:155px; }
   .card-brew-desc { font-size:13px; line-height:1.6; }
+  /* ── WhyDidItFail card 手机端 ── */
+  .work.w2 { aspect-ratio: auto; min-height: 580px; }
+  .wdif-content { gap:12px; }
+  .wdif-preview { height:148px; }
+  .card-wdif-desc { font-size:13px; line-height:1.6; }
+  /* ── AskDoc card 手机端：切换成竖排 ── */
+  .work.w3 { aspect-ratio: auto; min-height: 520px; }
+  .askdoc-content { flex-direction:column; padding:40px 20px 64px; gap:16px; }
+  .askdoc-preview { width:100%; height:180px; flex:0 0 180px; }
+  .askdoc-copy h3 { font-size:clamp(26px,7vw,36px); }
+  .askdoc-copy p { font-size:13px; }
   .hero h1 { font-size: clamp(48px, 12vw, 64px); }
   .hero h1 .hanzi { font-size: 1em; }
   .m-br { display: block; }
@@ -838,7 +1006,20 @@ Built as a fully automated pipeline that transforms raw news into accessible, cu
     <article class="work w2" data-cursor="hover">
       <div class="canvas c2"></div>
       <div class="index">N° 002</div>
-      <div class="label"><div class="name">Coming soon</div><div class="tag">→ Next project</div></div>
+      <div class="wdif-content">
+        <div class="wdif-preview">
+          <div class="wdif-bar">
+            <span class="wdif-dot"></span>
+            LAYER 47 · FAILURE DETECTED
+          </div>
+          <div class="wdif-status">PRUSA MK3+ · USB SERIAL</div>
+          <div class="wdif-wordmark">Why<em>Did</em>It<em>Fail</em></div>
+          <div class="wdif-diag">▶ AI DIAGNOSIS RUNNING...</div>
+          <a class="wdif-cta" href="https://github.com/itisbellax/WhyDidItFail" target="_blank">GitHub →</a>
+        </div>
+        <p class="card-wdif-desc">A real-time failure monitoring and diagnosis tool for Prusa MK3 / MK3+. Streams live printer data over USB serial, automatically detects firmware errors, and triggers AI-powered diagnosis. Users can also manually report issues mid-print — selecting the failure type, filling in print context, and optionally uploading a photo for visual analysis by Claude's vision model.</p>
+      </div>
+      <div class="label"><div class="name">WhyDidItFail</div><div class="tag">→ Diagnostic tool</div></div>
     </article>
 
     <!-- ── 以后添加新项目：复制下面注释里的模板，取消注释，填入内容即可 ── -->
@@ -846,9 +1027,30 @@ Built as a fully automated pipeline that transforms raw news into accessible, cu
     
     <article class="work w3" data-cursor="hover">
       <div class="canvas c3"></div>
-     
       <div class="index">N° 003</div>
-      <div class="label"><div class="name">Coming soon</div><div class="tag">→ Next porject </div></div>
+      <div class="askdoc-content">
+        <div class="askdoc-preview">
+          <div class="askdoc-bar">
+            <span class="askdoc-dot"></span>
+            PDF LOADED · RAG READY
+          </div>
+          <div class="askdoc-wordmark">Ask<em>Doc</em></div>
+          <div class="askdoc-qa">
+            <div class="askdoc-q">What is the main finding of this study?</div>
+            <div class="askdoc-a">The results demonstrate a 34% improvement in retrieval accuracy when using dense embeddings over sparse methods.<span class="askdoc-cite">p. 7</span></div>
+            <div class="askdoc-q">How was the dataset collected?</div>
+            <div class="askdoc-a">Data was sourced from 1,200 peer-reviewed papers across five domains.<span class="askdoc-cite">p. 12</span></div>
+          </div>
+          <a class="askdoc-cta" href="https://askdoc-jvrzrx8ceatx93vgcpa8hx.streamlit.app/" target="_blank">Visit →</a>
+        </div>
+        <div class="askdoc-copy">
+          <div class="askdoc-index-label">Document Q&amp;A · RAG</div>
+          <h3>AskDoc</h3>
+          <p>A document Q&amp;A tool powered by retrieval-augmented generation. Upload any PDF — research papers, reports, textbooks — and ask questions in natural language. Retrieves only the relevant chunks, returns grounded answers with exact page citations, and maintains conversational context across follow-up questions.</p>
+          <a class="askdoc-link" href="https://askdoc-jvrzrx8ceatx93vgcpa8hx.streamlit.app/" target="_blank">Open app →</a>
+        </div>
+      </div>
+      <div class="label"><div class="name">AskDoc</div><div class="tag">→ RAG tool</div></div>
     </article>
 <!--
     <article class="work w4" data-cursor="hover">
@@ -909,7 +1111,7 @@ Built as a fully automated pipeline that transforms raw news into accessible, cu
   <div class="ring"><div class="glow"></div></div>
   <div class="stage">
   
-    <h3><a href="mailto:bellaxunuo@gmail.com">contact me </a></h3>
+    <h3><a href="mailto:bellaxunuo@gmail.com">contact me.</a></h3>
     <div class="row">
       <a href="mailto:bellaxunuo@gmail.com">BELLAXUNUO@GMAIL.COM</a>
       <a href="https://linkedin.com" target="_blank">LINKEDIN</a>
